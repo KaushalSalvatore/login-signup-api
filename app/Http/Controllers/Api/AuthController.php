@@ -36,6 +36,7 @@ class AuthController extends Controller
     }
 
     public function signup(Request $request){
+
       $request->validate([
         'name' => 'required|string',
         'email'=> 'required|string|email|unique:users',
@@ -61,7 +62,13 @@ class AuthController extends Controller
         "message"=>"user logout successfully"
       ],200);
     }
-    public function index(){
-      echo "Well-come to index";
-    }
+
+
+    public function index(Request $request){
+
+          return response()->json([
+              "user" => $request->user()
+          ], 200);
+      }
+
 }
